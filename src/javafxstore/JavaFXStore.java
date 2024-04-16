@@ -5,8 +5,8 @@
  */
 package javafxstore;
 
+
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,16 +17,17 @@ import javafx.stage.Stage;
  * @author pupil
  */
 public class JavaFXStore extends Application {
-    
-    @FXML
+
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 400;
     private Stage primaryStage;
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         setPrimaryStage(primaryStage);
-        this.primaryStage.setTitle("JKTVFXLibrary");
+        this.primaryStage.setTitle("JKTVFXStore");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("home.fxml"));
+        loader.setLocation(getClass().getResource("Home.fxml"));
         Parent root = loader.load();
         HomeController homeController = loader.getController();
         homeController.setApp(this);
@@ -34,7 +35,7 @@ public class JavaFXStore extends Application {
         Scene scene = new Scene(root, WIDTH,HEIGHT);
         //Подключаем каскадную таблицу стилей из пакета javafxlibrary
         //scene.getStylesheets().add(getClass().getResource("home.css").toExternalForm());
-        //scene.getStylesheets().add(getClass().getResource("/javafxlibrary/home.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/javafxstore/home.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

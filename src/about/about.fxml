@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="about.AboutController">
-    <stylesheets>
-        <URL value="@about.css"/>
-    </stylesheets>
-</AnchorPane>
+<BorderPane fx:id="bpAboutRoot" prefHeight="389.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="about.AboutController">
+   <center>
+      <VBox prefHeight="389.0" prefWidth="629.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="40.0" right="40.0" top="50.0" />
+         </padding>
+         <children>
+            <Label fx:id="topLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="962.0" text="Добро пожаловать в магазин фотоаппаратов!" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbAboutText" alignment="TOP_CENTER" prefHeight="75.0" prefWidth="942.0" text="Приложение предназначено для изучения ассортимента и совершения покупок." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
