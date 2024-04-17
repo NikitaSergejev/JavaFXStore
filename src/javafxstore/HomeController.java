@@ -41,8 +41,8 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showAboutScene();
-        //this.vbContent = new VBox(); // инициализируем vbContent
+        //showAboutScene();
+        this.vbContent = new VBox(); // инициализируем vbContent
     }
 
     public void showAboutScene(){

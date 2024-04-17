@@ -8,13 +8,17 @@ package entity;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 
 /**
  *
  * @author nikit
  */
+@Entity
 public class Product implements Serializable {
+    @Id
     private Long id;
     private String type;
     @Lob
