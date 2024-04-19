@@ -147,5 +147,6 @@ public class Product implements Serializable {
                 + ", Model=" + Model 
                 + '}';
     }
+
     
 }

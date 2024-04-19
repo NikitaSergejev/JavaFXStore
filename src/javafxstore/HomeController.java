@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import products.newproduct.NewproductController;
 
 /**
  *
@@ -28,7 +29,6 @@ public class HomeController implements Initializable {
     
     @FXML
     private Label label;
-
     private JavaFXStore app;
     private VBox vbContent;
     
@@ -58,6 +58,39 @@ public class HomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /about/about.fxml", ex);
         }
+    }
+    
+     @FXML public void mbShowAddNewProduct(){
+         /*if(javafxlibrary.JavaFxLibrary.currentUser == null){
+         this.infoMessage="Для этого действия вы должны быть менеджером. Авторизуйтесь";
+         this.mbShowLonginForm();
+         return;
+         }
+         if(!javafxlibrary.JavaFxLibrary.currentUser.getRoles()
+         .contains(javafxlibrary.JavaFxLibrary.roles.MANAGER.toString())){
+         this.infoMessage="Для этого действия вы должны быть менеджером. Авторизуйтесь";
+         this.mbShowLonginForm();
+         return;
+         }*/
+        this.app.getPrimaryStage().setTitle("JKTVFXStore-добавить новую книгу");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/products/newproduct/newproduct.fxml"));
+        
+        try {
+            VBox vbNewProductRoot = loader.load();
+            vbNewProductRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            vbNewProductRoot.setPrefWidth(JavaFXStore.WIDTH);
+            NewproductController newproductController = loader.getController();
+            newproductController.setEntityManager(getApp().getEntityManager());
+            vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbNewProductRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить newbookRoot", ex);
+        }
+    }
+     
+    public JavaFXStore getApp() {
+        return app;
     }
     
 }

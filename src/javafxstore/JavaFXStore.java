@@ -11,6 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -21,6 +24,13 @@ public class JavaFXStore extends Application {
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private Stage primaryStage;
+    private final EntityManager em;
+
+    public JavaFXStore() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("JavaFXStorePU");
+        em = emf.createEntityManager();
+    }
+    
     
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,6 +57,13 @@ public class JavaFXStore extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    public EntityManager getEntityManager() {
+        return em;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
     
 }

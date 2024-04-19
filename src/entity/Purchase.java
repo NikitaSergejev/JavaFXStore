@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,6 +26,7 @@ public class Purchase implements Serializable {
     private Long id;
     private Product product;
     private Customer customer;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private int quantity;
 
