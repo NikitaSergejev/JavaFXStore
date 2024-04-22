@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
  * @author pupil
  */
 public class JavaFXStore extends Application {
-
+    public static enum roles {ADMINISTRATOR, MANAGER, USER};
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private Stage primaryStage;
@@ -30,25 +30,25 @@ public class JavaFXStore extends Application {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("JavaFXStorePU");
         em = emf.createEntityManager();
     }
-    
+   
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         setPrimaryStage(primaryStage);
         this.primaryStage.setTitle("JKTVFXStore");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Home.fxml"));
+        loader.setLocation(getClass().getResource("/javafxstore/home.fxml"));
         Parent root = loader.load();
         HomeController homeController = loader.getController();
-        homeController.setApp(this);
-        homeController.showAboutScene();
-        Scene scene = new Scene(root, WIDTH,HEIGHT);
-        //Подключаем каскадную таблицу стилей из пакета javafxlibrary
-        //scene.getStylesheets().add(getClass().getResource("home.css").toExternalForm());
+        homeController.setApp(this);  
+        // Создаем новую сцену, устанавливаем root в качестве корневого элемента
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.getStylesheets().add(getClass().getResource("/javafxstore/home.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+      
     }
+    
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }

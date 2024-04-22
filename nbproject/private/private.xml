@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/JavaFXStore.java</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/entity/Purchase.java</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/products/newproduct/newproduct.fxml</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/products/newproduct/NewproductController.java</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/entity/Product.java</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/Home.fxml</file>
-            <file>file:/C:/Users/pupil/Documents/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/HomeController.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/entity/Product.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/products/product/ProductController.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/HomeController.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/products/newproduct/newproduct.fxml</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/products/listproducts/ListproductController.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/about/about.fxml</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/about/AboutController.java</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/home.fxml</file>
+            <file>file:/C:/Users/nikit/OneDrive/Документы/NetBeansProjects/JKTV22/JavaFXStore/src/javafxstore/JavaFXStore.java</file>
         </group>
     </open-files>
 </project-private>

@@ -26,7 +26,7 @@ public class AboutController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Метод иницилиазируется");
+        
     }    
     
 }

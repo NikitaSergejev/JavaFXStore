@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -140,14 +141,13 @@ public class Customer implements Serializable {
     @Override
     public String toString() {
         return "Customer{" 
-                + "id=" 
-                + id + ", login=" 
-                + login + ", password=" 
-                + password + ", firstname=" 
-                + firstname + ", lastname=" 
-                + lastname + ", money=" 
-                + money + ", roles=" 
-                + roles 
+                + "id=" + id 
+                + ", login=" + login 
+                + ", password=" + password 
+                + ", firstname=" + firstname 
+                + ", lastname=" + lastname 
+                + ", money="  + money 
+                + ", roles=" + Arrays.toString(roles.toArray())
                 + '}';
     }
       public List<String> getRoles() {

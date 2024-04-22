@@ -73,6 +73,11 @@ public class NewproductController implements Initializable {
     }
     @FXML
     public void clickAddNewProduct(){
+        // Проверяем, был ли установлен EntityManager
+        if (em == null) {
+            lbInfo.setText("EntityManager не был установлен");
+            return;
+        }
         Product product = new Product();
         product.setType(tfType.getText());
         product.setBrand(tfBrand.getText());
