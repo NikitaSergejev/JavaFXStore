@@ -29,6 +29,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import products.newproduct.NewproductController;
 import products.product.ProductController;
+import users.login.LoginController;
+import users.newuser.NewuserController;
+import users.profile.ProfileController;
 
 /**
  *
@@ -39,7 +42,7 @@ public class HomeController implements Initializable {
     @FXML
     private VBox vbContent;
     private JavaFXStore app;
-    
+     private String infoMessage;
     
    
      /*public VBox getVbContent() {
@@ -73,16 +76,16 @@ public class HomeController implements Initializable {
          loader.setLocation(getClass().getResource("/products/newproduct/newproduct.fxml"));
          
          try {
-         VBox vbNewProductRoot = loader.load();
-         vbNewProductRoot.setPrefHeight(JavaFXStore.HEIGHT);
-         vbNewProductRoot.setPrefWidth(JavaFXStore.WIDTH);
-         NewproductController newproductController = loader.getController();
-         newproductController.setEntityManager(getApp().getEntityManager());
-         vbContent.getChildren().clear();
-         vbContent.getChildren().add(vbNewProductRoot);
-         System.out.println("Add product scene is shown successfully!");
+            VBox vbNewProductRoot = loader.load();
+            vbNewProductRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            vbNewProductRoot.setPrefWidth(JavaFXStore.WIDTH);
+            NewproductController newproductController = loader.getController();
+            newproductController.setEntityManager(getApp().getEntityManager());
+            vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbNewProductRoot);
+            System.out.println("Add product scene is shown successfully!");
          } catch (IOException ex) {
-         Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить newproductRoot", ex);
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить newproductRoot", ex);
          }
     }
      
@@ -118,8 +121,61 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить /products/product/listproduct.fxml", ex);
         }
      }
-     
-     
+     @FXML public void mbShowAddNewUser(){
+        this.app.getPrimaryStage().setTitle("JKTVFXLibrary-регистрация пользователя");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/users/newuser/newuser.fxml"));
+        
+        try {
+            VBox vbNewUserRoot = loader.load();
+            vbNewUserRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            vbNewUserRoot.setPrefWidth(JavaFXStore.WIDTH);
+            NewuserController newuserController = loader.getController();
+            newuserController.setEntityManager(getApp().getEntityManager());
+            vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbNewUserRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить vbNewUserRoot", ex);
+        }
+    }
+     @FXML public void mbShowLonginForm(){
+        this.app.getPrimaryStage().setTitle("JKTVFXLibrary-вход пользователя");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/users/login/login.fxml"));
+        
+        try {
+            VBox vbLoginRoot = loader.load();
+            vbLoginRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            vbLoginRoot.setPrefWidth(JavaFXStore.WIDTH);
+            LoginController loginController = loader.getController();
+            loginController.setEntityManager(getApp().getEntityManager());
+            loginController.setInfo(this.infoMessage);
+            vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbLoginRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить vbLoginRoot", ex);
+        }
+    }
+     public void mbShowProfileForm(){
+        if(javafxstore.JavaFXStore.currentCustomer == null){
+            this.infoMessage="Авторизуйтесь";
+            this.mbShowLonginForm();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/users/profile/profile.fxml"));
+            VBox vbProfileRoot = loader.load();
+            ProfileController profileController = loader.getController();
+            profileController.setEntityManager(getApp().getEntityManager());
+            vbProfileRoot.setPrefWidth(JavaFXStore.WIDTH);
+            vbProfileRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            this.vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbProfileRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /users/profile/profile.fxml", ex);
+        }
+    } 
      
      
     public JavaFXStore getApp() {

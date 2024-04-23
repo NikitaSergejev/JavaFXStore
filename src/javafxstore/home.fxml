@@ -18,8 +18,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Пользователи">
             <items>
-              
-                  
+              <MenuItem mnemonicParsing="false" onAction="#mbShowLonginForm" text="Вход" />   
+              <MenuItem mnemonicParsing="false" onAction="#mbShowAddNewUser" text="Регистрация" />
+              <MenuItem mnemonicParsing="false" onAction="#mbShowProfileForm" text="Профиль" />    
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Администратор">
