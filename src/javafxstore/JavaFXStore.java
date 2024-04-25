@@ -7,6 +7,7 @@ package javafxstore;
 
 
 import entity.Customer;
+import entity.Product;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,7 @@ import javax.persistence.Persistence;
 public class JavaFXStore extends Application {
     public static enum roles {ADMINISTRATOR, MANAGER, USER};
     public static Customer currentCustomer;
+    public static Product productToEdit;
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private Stage primaryStage;

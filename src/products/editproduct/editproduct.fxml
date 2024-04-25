@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbProfileRoot" prefHeight="355.0" prefWidth="600.0" stylesheets="@profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="users.profile.ProfileController">
+<VBox fx:id="vbEditProductRoot" prefHeight="355.0" prefWidth="600.0" stylesheets="@editproduct.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="products.editproduct.EditproductController">
    <children>
-      <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="600.0" text="Профиль пользователя">
+      <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="600.0" text="Изменения информации о товаре">
          <font>
             <Font size="25.0" />
          </font>
@@ -41,7 +41,7 @@
             <RowConstraints maxHeight="261.0" minHeight="10.0" prefHeight="66.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Имя" GridPane.rowIndex="1">
+            <Label text="Тип" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Фамилия" GridPane.rowIndex="2">
+            <Label text="Модель" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
@@ -57,7 +57,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Логин" GridPane.rowIndex="3">
+            <Label text="Цена" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Пароль" GridPane.rowIndex="4">
+            <Label text="Количество" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
@@ -73,12 +73,12 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="tfFirstname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="tfType" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="tfLastname" styleClass="user-field" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="tfModel" styleClass="user-field" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -86,19 +86,19 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="tfLogin" prefHeight="39.0" prefWidth="375.0" styleClass="user-field" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="tfPrice" prefHeight="39.0" prefWidth="375.0" styleClass="user-field" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="tfPassword" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="tfQuantity" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Button fx:id="btUpdateProfile" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#clickUpdateProfile" text="Изменить профиль">
+                  <Button fx:id="btUpdateProduct" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#clickUpdateProduct" text="Изменить данные">
                      <HBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </HBox.margin>
@@ -114,7 +114,7 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <Label text="Деньги" GridPane.rowIndex="5">
+            <Label text="Бренд" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font>
@@ -122,7 +122,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="tfMoney" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="tfBrand" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font>

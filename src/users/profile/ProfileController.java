@@ -30,6 +30,7 @@ public class ProfileController implements Initializable {
     @FXML private TextField tfLastname;
     @FXML private TextField tfLogin;
     @FXML private TextField tfPassword;
+    @FXML private TextField tfMoney;
     @FXML private Button btUpdateProfile;
     private EntityManager em;
 
@@ -42,6 +43,7 @@ public class ProfileController implements Initializable {
         tfFirstname.setText(javafxstore.JavaFXStore.currentCustomer.getFirstname());
         tfLastname.setText(javafxstore.JavaFXStore.currentCustomer.getLastname());
         tfLogin.setText(javafxstore.JavaFXStore.currentCustomer.getLogin());
+        tfMoney.setText(String.valueOf(javafxstore.JavaFXStore.currentCustomer.getMoney()));
         tfPassword.setText("");
         tfLogin.setDisable(true);
         btUpdateProfile.setOnKeyPressed(event -> {
@@ -64,6 +66,8 @@ public class ProfileController implements Initializable {
         Customer customer = em.find(Customer.class,javafxstore.JavaFXStore.currentCustomer.getId());
         customer.setFirstname(tfLastname.getText());
         customer.setLastname(tfFirstname.getText());
+        int money = Integer.parseInt(tfMoney.getText());
+        customer.setMoney(money);
         if(!tfPassword.getText().isEmpty()){
             PassEncrypt pe = new PassEncrypt();
             customer.setPassword(pe.getEncryptPassword(tfPassword.getText(),pe.getSalt()));
@@ -76,6 +80,7 @@ public class ProfileController implements Initializable {
             tfFirstname.setText(javafxstore.JavaFXStore.currentCustomer.getFirstname());
             tfLastname.setText(javafxstore.JavaFXStore.currentCustomer.getLastname());
             tfLogin.setText(javafxstore.JavaFXStore.currentCustomer.getLogin());
+            tfMoney.setText(String.valueOf(javafxstore.JavaFXStore.currentCustomer.getMoney()));
             tfPassword.setText("");
             if(lbInfo.getStyleClass().contains("error-text")){
                     lbInfo.getStyleClass().remove("error-text");

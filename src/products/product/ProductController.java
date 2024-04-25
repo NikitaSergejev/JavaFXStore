@@ -23,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafxstore.HomeController;
 import javafxstore.JavaFXStore;
 
 /**
@@ -33,12 +34,13 @@ import javafxstore.JavaFXStore;
 public class ProductController implements Initializable {
     private JavaFXStore app;
     private Stage productWindow;
+    private HomeController homeController;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
      public void showProduct(Product product) {
         this.productWindow = new Stage();
@@ -55,8 +57,8 @@ public class ProductController implements Initializable {
         hbButtons.setAlignment(Pos.CENTER);
         hbButtons.setSpacing(10);
         hbButtons.setPadding(new Insets(20,20,20,20));
-        Button btOk = new Button("Купить");
-        Button btCansel = new Button("Закрыть");
+        Button btEditProduct = new Button("Редактировать");
+        Button btBuy = new Button("Купить");
         // Создаем элементы управления для отображения информации о товаре
         Label lbPrice = new Label("Цена: " + product.getPrice()+"€");
         Label lbQuantity = new Label("Количество: " + product.getQuantity());
@@ -65,34 +67,41 @@ public class ProductController implements Initializable {
         // Добавляем элементы управления в контейнер
         vbProduct.getChildren().addAll(lbPrice, lbQuantity, lbModel, lbBrand);
        // Обработчик события для Button
-       /* btCansel.setOnKeyPressed(event -> {
+       /* btBuy.setOnKeyPressed(event -> {
        if (event.getCode() == KeyCode.ENTER) {
        bookWindow.close();
        }
        });
-       btCansel.setOnMouseClicked(event -> {
+       btBuy.setOnMouseClicked(event -> {
        if (event.getButton() == MouseButton.PRIMARY) {
        bookWindow.close();
-       }
-       });
-       
-       btOk.setOnKeyPressed(event -> {
-       if (event.getCode() == KeyCode.ENTER) {
-       takeOnBook(book);
-       }
-       });
-       btOk.setOnMouseClicked(event -> {
-       if (event.getButton() == MouseButton.PRIMARY) {
-       takeOnBook(book);
        }
        });*/
-        hbButtons.getChildren().addAll(btOk,btCansel);
+       
+       btEditProduct.setOnKeyPressed(event -> {
+       if (event.getCode() == KeyCode.ENTER) {
+           productWindow.close();
+           homeController.mbShowEditProductForm();
+       }
+       });
+       btEditProduct.setOnMouseClicked(event -> {
+       if (event.getButton() == MouseButton.PRIMARY) {
+            productWindow.close();            
+            setHomeController(homeController);
+            homeController.mbShowEditProductForm();
+}
+
+       });
+        hbButtons.getChildren().addAll(btEditProduct,btBuy);
         vbProduct.getChildren().add(hbButtons);
         Scene scene = new Scene(vbProduct,550,700);
         scene.getStylesheets().add(getClass().getResource("/products/product/product.css").toExternalForm());
         productWindow.setScene(scene);
         productWindow.show();
         
+    }
+    public void setHomeController(HomeController homeController) {
+        this.homeController = homeController;
     }
     public JavaFXStore getApp() {
         return app;

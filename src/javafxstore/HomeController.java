@@ -27,6 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
+import products.editproduct.EditproductController;
 import products.newproduct.NewproductController;
 import products.product.ProductController;
 import users.login.LoginController;
@@ -104,6 +105,7 @@ public class HomeController implements Initializable {
                 productLoader.setLocation(getClass().getResource("/products/product/product.fxml"));
                 ImageView ivCoverProductRoot = productLoader.load();
                 ProductController productController = productLoader.getController();
+                productController.setHomeController(this);
                 productController.setApp(app);
                 ivCoverProductRoot.setCursor(Cursor.OPEN_HAND);
                 ivCoverProductRoot.setOnMouseClicked(event -> {
@@ -156,7 +158,7 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Невозможно заргузить vbLoginRoot", ex);
         }
     }
-     public void mbShowProfileForm(){
+    public void mbShowProfileForm(){
         if(javafxstore.JavaFXStore.currentCustomer == null){
             this.infoMessage="Авторизуйтесь";
             this.mbShowLonginForm();
@@ -176,7 +178,26 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /users/profile/profile.fxml", ex);
         }
     } 
-     
+    public void mbShowEditProductForm(){
+        if(javafxstore.JavaFXStore.currentCustomer == null){
+            this.infoMessage="Авторизуйтесь";
+            this.mbShowLonginForm();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/products/editproduct/editproduct.fxml"));
+            VBox vbEditProductRoot = loader.load();
+            EditproductController editproductController = loader.getController();
+            editproductController.setEntityManager(getApp().getEntityManager());
+            vbEditProductRoot.setPrefWidth(JavaFXStore.WIDTH);
+            vbEditProductRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            this.vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbEditProductRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /products/editproduct/editproduct.fxml", ex);
+        }
+    }
      
     public JavaFXStore getApp() {
         return app;
