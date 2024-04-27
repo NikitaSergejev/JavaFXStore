@@ -30,6 +30,7 @@ import javafx.stage.Screen;
 import products.editproduct.EditproductController;
 import products.newproduct.NewproductController;
 import products.product.ProductController;
+import purchase.PurchaseController;
 import users.login.LoginController;
 import users.newuser.NewuserController;
 import users.profile.ProfileController;
@@ -90,7 +91,7 @@ public class HomeController implements Initializable {
          }
     }
      
-     @FXML public void mbShowListProduct(){
+    @FXML public void mbShowListProduct(){
         this.app.getPrimaryStage().setTitle("JKTVFXStore - список товаров");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/products/listproducts/listproduct.fxml"));
@@ -198,11 +199,31 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /products/editproduct/editproduct.fxml", ex);
         }
     }
+    public void mbShowPucrhaseProductForm(){
+        if(javafxstore.JavaFXStore.currentCustomer == null){
+            this.infoMessage="Авторизуйтесь";
+            this.mbShowLonginForm();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/purchase/purchase.fxml"));
+            VBox vbPurchaseProductRoot = loader.load();
+            PurchaseController purchaseController = loader.getController();
+            purchaseController.setEntityManager(getApp().getEntityManager());
+            vbPurchaseProductRoot.setPrefWidth(JavaFXStore.WIDTH);
+            vbPurchaseProductRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            this.vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbPurchaseProductRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /purchase/purchase.fxml", ex);
+        }
+    }
      
     public JavaFXStore getApp() {
         return app;
     }
-     void setApp(JavaFXStore app) {
+     public void setApp(JavaFXStore app) {
         this.app = app;
        // this.vbContent = new VBox(); // инициализируем vbContent
     }

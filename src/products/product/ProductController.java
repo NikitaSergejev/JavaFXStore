@@ -5,6 +5,7 @@
  */
 package products.product;
 
+import entity.Customer;
 import entity.Product;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
@@ -35,6 +36,7 @@ public class ProductController implements Initializable {
     private JavaFXStore app;
     private Stage productWindow;
     private HomeController homeController;
+    private Customer customer;
     /**
      * Initializes the controller class.
      */
@@ -67,16 +69,22 @@ public class ProductController implements Initializable {
         // Добавляем элементы управления в контейнер
         vbProduct.getChildren().addAll(lbPrice, lbQuantity, lbModel, lbBrand);
        // Обработчик события для Button
-       /* btBuy.setOnKeyPressed(event -> {
+       btBuy.setOnKeyPressed(event -> {
        if (event.getCode() == KeyCode.ENTER) {
-       bookWindow.close();
+        productWindow.close();
+        homeController.mbShowPucrhaseProductForm();
        }
        });
        btBuy.setOnMouseClicked(event -> {
        if (event.getButton() == MouseButton.PRIMARY) {
-       bookWindow.close();
+            productWindow.close();
+            JavaFXStore.productToEdit = product;
+            JavaFXStore.currentCustomer = customer;
+            setHomeController(homeController);
+            homeController.setApp(app);
+            homeController.mbShowPucrhaseProductForm();
        }
-       });*/
+       });
        
        btEditProduct.setOnKeyPressed(event -> {
        if (event.getCode() == KeyCode.ENTER) {
@@ -86,8 +94,10 @@ public class ProductController implements Initializable {
        });
        btEditProduct.setOnMouseClicked(event -> {
        if (event.getButton() == MouseButton.PRIMARY) {
-            productWindow.close();            
+            productWindow.close();
+            JavaFXStore.productToEdit = product;
             setHomeController(homeController);
+            homeController.setApp(app); 
             homeController.mbShowEditProductForm();
 }
 

@@ -82,7 +82,7 @@ public class EditproductController implements Initializable {
                    if(!lbInfo.getStyleClass().contains("info-text")){
                        lbInfo.getStyleClass().add("info-text");
                    }
-               lbInfo.setText("Профиль пользователя изменен");
+               lbInfo.setText("Информация обновлена");
                lbInfo.getStyleClass().add("info-text");
 
         }catch (Exception e) {
@@ -92,7 +92,7 @@ public class EditproductController implements Initializable {
                if(!lbInfo.getStyleClass().contains("info-text")){
                    lbInfo.getStyleClass().remove("info-text");
                }
-               lbInfo.setText("Профиль изменить не удалось");
+               lbInfo.setText("Информацию изменить не удалось");
                lbInfo.getStyleClass().add("error-text");
 
            }

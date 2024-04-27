@@ -25,6 +25,7 @@ public class JavaFXStore extends Application {
     public static enum roles {ADMINISTRATOR, MANAGER, USER};
     public static Customer currentCustomer;
     public static Product productToEdit;
+    public static Product productToBuy;
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private Stage primaryStage;
