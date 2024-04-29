@@ -5,6 +5,7 @@
  */
 package javafxstore;
 
+import entity.Customer;
 import entity.Product;
 import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayInputStream;
@@ -44,7 +45,7 @@ public class HomeController implements Initializable {
     @FXML
     private VBox vbContent;
     private JavaFXStore app;
-     private String infoMessage;
+    private String infoMessage;
     
    
      /*public VBox getVbContent() {
@@ -111,7 +112,9 @@ public class HomeController implements Initializable {
                 ivCoverProductRoot.setCursor(Cursor.OPEN_HAND);
                 ivCoverProductRoot.setOnMouseClicked(event -> {
                     if (event.getButton() == MouseButton.PRIMARY) {
+                        productController.setCurrentCustomer(JavaFXStore.currentCustomer);
                         productController.showProduct(product);
+                       
                     }
                 });
                 Image image = new Image(new ByteArrayInputStream(product.getPhoto()));
@@ -219,7 +222,9 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /purchase/purchase.fxml", ex);
         }
     }
-     
+    public Customer getCurrentCustomer() {
+        return JavaFXStore.currentCustomer;
+    }
     public JavaFXStore getApp() {
         return app;
     }

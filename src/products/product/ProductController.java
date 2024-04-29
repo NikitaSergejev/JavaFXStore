@@ -36,7 +36,7 @@ public class ProductController implements Initializable {
     private JavaFXStore app;
     private Stage productWindow;
     private HomeController homeController;
-    private Customer customer;
+    private Customer currentCustomer;
     /**
      * Initializes the controller class.
      */
@@ -71,15 +71,21 @@ public class ProductController implements Initializable {
        // Обработчик события для Button
        btBuy.setOnKeyPressed(event -> {
        if (event.getCode() == KeyCode.ENTER) {
-        productWindow.close();
-        homeController.mbShowPucrhaseProductForm();
-       }
+            productWindow.close();
+            JavaFXStore.productToBuy = product;
+            // Устанавливаем текущего пользователя
+            homeController.getCurrentCustomer();
+            setHomeController(homeController);
+            homeController.setApp(app);
+            homeController.mbShowPucrhaseProductForm();
+        }
        });
        btBuy.setOnMouseClicked(event -> {
        if (event.getButton() == MouseButton.PRIMARY) {
             productWindow.close();
-            JavaFXStore.productToEdit = product;
-            JavaFXStore.currentCustomer = customer;
+            JavaFXStore.productToBuy = product;
+            // Устанавливаем текущего пользователя
+            homeController.getCurrentCustomer();
             setHomeController(homeController);
             homeController.setApp(app);
             homeController.mbShowPucrhaseProductForm();
@@ -89,7 +95,10 @@ public class ProductController implements Initializable {
        btEditProduct.setOnKeyPressed(event -> {
        if (event.getCode() == KeyCode.ENTER) {
            productWindow.close();
-           homeController.mbShowEditProductForm();
+            JavaFXStore.productToEdit = product;
+            setHomeController(homeController);
+            homeController.setApp(app); 
+            homeController.mbShowEditProductForm();
        }
        });
        btEditProduct.setOnMouseClicked(event -> {
@@ -113,12 +122,16 @@ public class ProductController implements Initializable {
     public void setHomeController(HomeController homeController) {
         this.homeController = homeController;
     }
+     public void setCurrentCustomer(Customer customer) {
+        this.currentCustomer = customer;
+    }
     public JavaFXStore getApp() {
         return app;
     }
     public void setApp(JavaFXStore app) {
         this.app = app;
     }
+    
 
     
     
