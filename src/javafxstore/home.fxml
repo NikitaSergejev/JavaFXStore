@@ -28,6 +28,12 @@
                   
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Акции">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#mbShowAddSaleForm" text="Добавить скидку" /> 
+                  <MenuItem mnemonicParsing="false" onAction="#mbShowSaleList" text="Скидочные компании" /> 
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <VBox fx:id="vbContent" prefHeight="515.0" prefWidth="800.0">

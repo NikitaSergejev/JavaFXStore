@@ -28,7 +28,7 @@ import javax.persistence.EntityManager;
  */
 public class PurchaseController implements Initializable {
     private boolean isInitialized = false;
-    /*private Purchase purchase;*/
+    private boolean transaction = false;
     @FXML private Label lbInfo;
     @FXML private TextField tfModel;
     @FXML private TextField tfQuantity;
@@ -81,22 +81,29 @@ public class PurchaseController implements Initializable {
                 purchase.setQuantity(quantityToBuy);
                 purchase.setDate(new Date()); 
                 try{
-                    em.getTransaction().begin();
-                    em.merge(purchase);
-                    em.getTransaction().commit();
-                    customer.setMoney(customer.getMoney() - (product.getPrice() * quantityToBuy));
-                    em.getTransaction().begin();
-                    em.merge(customer);
-                    em.getTransaction().commit();
-                    javafxstore.JavaFXStore.currentCustomer=customer;
-                    product.setQuantity(product.getQuantity()-quantityToBuy); 
-                    em.getTransaction().begin();
-                    em.merge(product);
-                    em.getTransaction().commit();
-                    javafxstore.JavaFXStore.productToBuy=product;
-                    lbInfo.setText("Товар успешно куплен");
-                    lbInfo.getStyleClass().remove("error-text");
+                    if (!transaction){
+                        em.getTransaction().begin();
+                        em.merge(purchase);
+                        em.getTransaction().commit();
+                        customer.setMoney(customer.getMoney() - (product.getPrice() * quantityToBuy));
+                        em.getTransaction().begin();
+                        em.merge(customer);
+                        em.getTransaction().commit();
+                        //javafxstore.JavaFXStore.currentCustomer=customer;
+                        product.setQuantity(product.getQuantity()-quantityToBuy); 
+                        em.getTransaction().begin();
+                        em.merge(product);
+                        em.getTransaction().commit();
+                       //javafxstore.JavaFXStore.productToBuy=product;
+                        lbInfo.setText("Товар успешно куплен");
+                        lbInfo.getStyleClass().remove("error-text");
+                        lbInfo.getStyleClass().add("info-text");
+                      transaction = true; // Устанавливаем флаг транзакции в true
+                } else {
+                    lbInfo.setText("Транзакция уже обрабатывается");
+                    lbInfo.getStyleClass().remove("info-text");
                     lbInfo.getStyleClass().add("info-text");
+                    }
                 }catch(Exception e){                   
                     if (!em.getTransaction().isActive()) {
                         em.getTransaction().begin();

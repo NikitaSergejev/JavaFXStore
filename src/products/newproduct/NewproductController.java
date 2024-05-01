@@ -45,16 +45,16 @@ public class NewproductController implements Initializable {
     @FXML private Button btAddNewProduct;
      
 
-    public NewproductController() {
-    }
+    /*public NewproductController() {
+    }*/
     
       @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tfQuantity.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                lbInfo.setText("");
-            } 
-        });
+        /*tfQuantity.focusedProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue) {
+        lbInfo.setText("");
+        }
+        });*/
         
         // Обработчик события для Button
         btAddNewProduct.setOnKeyPressed(event -> {

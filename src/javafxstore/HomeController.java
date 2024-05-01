@@ -32,6 +32,8 @@ import products.editproduct.EditproductController;
 import products.newproduct.NewproductController;
 import products.product.ProductController;
 import purchase.PurchaseController;
+import sale.SaleController;
+import sale.addsale.AddsaleController;
 import users.login.LoginController;
 import users.newuser.NewuserController;
 import users.profile.ProfileController;
@@ -182,6 +184,26 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /users/profile/profile.fxml", ex);
         }
     } 
+    public void mbShowSaleList(){
+        if(javafxstore.JavaFXStore.currentCustomer == null){
+            this.infoMessage="Авторизуйтесь";
+            this.mbShowLonginForm();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sale/sale.fxml"));
+            VBox vbSaleRoot = loader.load();
+            SaleController saleController = loader.getController();
+            saleController.setEntityManager(getApp().getEntityManager());
+            vbSaleRoot.setPrefWidth(JavaFXStore.WIDTH);
+            vbSaleRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            this.vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbSaleRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /sale/sale.fxml", ex);
+        }
+    } 
     public void mbShowEditProductForm(){
         if(javafxstore.JavaFXStore.currentCustomer == null){
             this.infoMessage="Авторизуйтесь";
@@ -220,6 +242,26 @@ public class HomeController implements Initializable {
             vbContent.getChildren().add(vbPurchaseProductRoot);
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /purchase/purchase.fxml", ex);
+        }
+    }
+    public void mbShowAddSaleForm(){
+        if(javafxstore.JavaFXStore.currentCustomer == null){
+            this.infoMessage="Авторизуйтесь";
+            this.mbShowLonginForm();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sale/addsale/addsale.fxml"));
+            VBox vbAddSaleRoot = loader.load();
+            AddsaleController addSaleController = loader.getController();
+            addSaleController.setEntityManager(getApp().getEntityManager());
+            vbAddSaleRoot.setPrefWidth(JavaFXStore.WIDTH);
+            vbAddSaleRoot.setPrefHeight(JavaFXStore.HEIGHT);
+            this.vbContent.getChildren().clear();
+            vbContent.getChildren().add(vbAddSaleRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, "Нет /sale/addsale/addsale.fxml", ex);
         }
     }
     public Customer getCurrentCustomer() {
