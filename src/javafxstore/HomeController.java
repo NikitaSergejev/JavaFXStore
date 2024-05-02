@@ -185,11 +185,11 @@ public class HomeController implements Initializable {
         }
     } 
     public void mbShowSaleList(){
-        if(javafxstore.JavaFXStore.currentCustomer == null){
-            this.infoMessage="Авторизуйтесь";
-            this.mbShowLonginForm();
-            return;
-        }
+        /* if(javafxstore.JavaFXStore.currentCustomer == null){
+        this.infoMessage="Авторизуйтесь";
+        this.mbShowLonginForm();
+        return;
+        }*/
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sale/sale.fxml"));

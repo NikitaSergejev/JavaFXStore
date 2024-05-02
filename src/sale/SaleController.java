@@ -26,22 +26,31 @@ import javax.persistence.Query;
 public class SaleController implements Initializable {
     
     @FXML Label lbInfo;
-    @FXML
-    Button btAllSale;
-    Button btPastSale;
-    Button btActiveSale;
-    Button btFutureSale;
+    @FXML Button btAllSale;
+    @FXML Button btPastSale;
+    @FXML Button btActiveSale;
+    @FXML Button btFutureSale;
+    //@FXML ListView saleListView;
     private ListView<String> saleListView;
     private EntityManager em;
      // Перечисление для типов фильтрации
     private enum FilterType {
         ALL, ACTIVE, PAST, FUTURE
     }
+     public EntityManager getEntityManager() {
+        return em;
+    }
+
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         // Проинициализируем saleListView
+        saleListView = new ListView<>();
         // Получаем список акций из базы данных с учетом выбранного фильтра
     List<Sale> sales = getSalesFromDatabase(FilterType.ALL); // По умолчанию показываем все акции
 
@@ -72,17 +81,16 @@ public class SaleController implements Initializable {
         return (Sale) query.getSingleResult();
     }
      // Метод для получения списка акций из базы данных
-    /*private List<Sale> getSalesFromDatabase() {
+    private List<Sale> getSalesFromDatabase() {
     Query query = em.createQuery("SELECT s FROM Sale s");
     return query.getResultList();
-    }*/
+    }
      // Метод для получения списка акций из базы данных с учетом фильтрации по сроку действия
     private List<Sale> getSalesFromDatabase(FilterType filterType) {
-        Query query;
+        Query query = null;
         switch (filterType) {
             case ACTIVE:
-                query = em.createQuery("SELECT s FROM Sale s WHERE s.dateEnd >= :today");
-                
+                query = em.createQuery("SELECT s FROM Sale s WHERE s.dateEnd >= :today");              
                 break;
             case PAST:
                 query = em.createQuery("SELECT s FROM Sale s WHERE s.dateEnd < :today");
@@ -91,8 +99,7 @@ public class SaleController implements Initializable {
                 query = em.createQuery("SELECT s FROM Sale s WHERE s.dateStart > :today");
                 break;
             default:
-                query = em.createQuery("SELECT s FROM Sale s");
-                break;
+                return getSalesFromDatabase();                
         }
         query.setParameter("today", new Date());
         return query.getResultList();
@@ -131,12 +138,6 @@ public class SaleController implements Initializable {
     }
 
    
-    public EntityManager getEntityManager() {
-        return em;
-    }
-
-    public void setEntityManager(EntityManager em) {
-        this.em = em;
-    }
+   
     
 }
