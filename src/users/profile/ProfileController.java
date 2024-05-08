@@ -81,24 +81,10 @@ public class ProfileController implements Initializable {
             tfLastname.setText(javafxstore.JavaFXStore.currentCustomer.getLastname());
             tfLogin.setText(javafxstore.JavaFXStore.currentCustomer.getLogin());
             tfMoney.setText(String.valueOf(javafxstore.JavaFXStore.currentCustomer.getMoney()));
-            tfPassword.setText("");
-            if(lbInfo.getStyleClass().contains("error-text")){
-                    lbInfo.getStyleClass().remove("error-text");
-                }
-                if(!lbInfo.getStyleClass().contains("info-text")){
-                    lbInfo.getStyleClass().add("info-text");
-                }
-            lbInfo.setText("Профиль пользователя изменен");
-            lbInfo.getStyleClass().add("info-text");
-        } catch (Exception e) {
-            if(!lbInfo.getStyleClass().contains("error-text")){
-                    lbInfo.getStyleClass().add("error-text");
-                }
-            if(!lbInfo.getStyleClass().contains("info-text")){
-                lbInfo.getStyleClass().remove("info-text");
-            }
-            lbInfo.setText("Профиль изменить не удалось");
-            lbInfo.getStyleClass().add("error-text");
+            tfPassword.setText("");                            
+            lbInfo.setText("Профиль пользователя изменен");           
+        } catch (Exception e) {                     
+            lbInfo.setText("Профиль изменить не удалось");           
             
         }
     }

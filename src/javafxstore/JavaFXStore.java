@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import tools.PassEncrypt;
 
 /**
  *
@@ -39,6 +40,7 @@ public class JavaFXStore extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        createSuperUser();
         setPrimaryStage(primaryStage);
         this.primaryStage.setTitle("JKTVFXStore");
         FXMLLoader loader = new FXMLLoader();
@@ -50,13 +52,32 @@ public class JavaFXStore extends Application {
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.getStylesheets().add(getClass().getResource("/javafxstore/home.css").toExternalForm());
         primaryStage.setScene(scene);
-        primaryStage.show();
-      
+        primaryStage.show();     
+    }
+    private void createSuperUser(){
+        try {
+            getEntityManager().createQuery("SELECT u FROM Customer u WHERE u.login = :login")
+                    .setParameter("login", "admin")
+                    .getSingleResult();
+        } catch (Exception e) {
+             PassEncrypt pe = new PassEncrypt();
+             Customer userAdmin = new Customer();
+             userAdmin.setFirstname("Nikita");
+             userAdmin.setLastname("Sergejev");
+             userAdmin.setLogin("admin");
+             userAdmin.setMoney(10000);
+             userAdmin.setPassword(pe.getEncryptPassword("12345",pe.getSalt()));
+             userAdmin.getRoles().add(roles.ADMINISTRATOR.toString());
+             userAdmin.getRoles().add(roles.MANAGER.toString());
+             userAdmin.getRoles().add(roles.USER.toString());
+             getEntityManager().getTransaction().begin();
+             getEntityManager().persist(userAdmin);
+             getEntityManager().getTransaction().commit();
+             
+        }
     }
     
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -70,5 +91,7 @@ public class JavaFXStore extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
-    
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 }

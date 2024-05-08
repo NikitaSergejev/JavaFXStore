@@ -75,26 +75,11 @@ public class EditproductController implements Initializable {
            tfBrand.setText(javafxstore.JavaFXStore.productToEdit.getBrand());
            tfModel.setText(javafxstore.JavaFXStore.productToEdit.getModel());
            tfPrice.setText(String.valueOf(javafxstore.JavaFXStore.productToEdit.getPrice()));
-           tfQuantity.setText(String.valueOf(javafxstore.JavaFXStore.productToEdit.getQuantity())); 
-           if(lbInfo.getStyleClass().contains("error-text")){
-                       lbInfo.getStyleClass().remove("error-text");
-                   }
-                   if(!lbInfo.getStyleClass().contains("info-text")){
-                       lbInfo.getStyleClass().add("info-text");
-                   }
-               lbInfo.setText("Информация обновлена");
-               lbInfo.getStyleClass().add("info-text");
+           tfQuantity.setText(String.valueOf(javafxstore.JavaFXStore.productToEdit.getQuantity()));                  
+           lbInfo.setText("Информация обновлена");             
 
-        }catch (Exception e) {
-               if(!lbInfo.getStyleClass().contains("error-text")){
-                       lbInfo.getStyleClass().add("error-text");
-                   }
-               if(!lbInfo.getStyleClass().contains("info-text")){
-                   lbInfo.getStyleClass().remove("info-text");
-               }
-               lbInfo.setText("Информацию изменить не удалось");
-               lbInfo.getStyleClass().add("error-text");
-
+        }catch (Exception e) {                             
+               lbInfo.setText("Информацию изменить не удалось");              
            }
     }
     

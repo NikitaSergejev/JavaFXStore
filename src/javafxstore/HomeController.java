@@ -126,7 +126,7 @@ public class HomeController implements Initializable {
         }
      }
      @FXML public void mbShowAddNewUser(){
-        this.app.getPrimaryStage().setTitle("JKTVFXLibrary-регистрация пользователя");
+        this.app.getPrimaryStage().setTitle("JKTVFXStore-регистрация пользователя");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/users/newuser/newuser.fxml"));
         
@@ -143,7 +143,7 @@ public class HomeController implements Initializable {
         }
     }
      @FXML public void mbShowLonginForm(){
-        this.app.getPrimaryStage().setTitle("JKTVFXLibrary-вход пользователя");
+        this.app.getPrimaryStage().setTitle("JKTVFXStore-вход пользователя");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/users/login/login.fxml"));
         
@@ -186,7 +186,9 @@ public class HomeController implements Initializable {
         this.mbShowLonginForm();
         return;
         }*/
+       
         try {
+            this.app.getPrimaryStage().setTitle("JKTVFXStore-скидочные компании");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sale/sale.fxml"));
             VBox vbSaleRoot = loader.load();

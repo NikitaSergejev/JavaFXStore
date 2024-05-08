@@ -24,16 +24,14 @@
          </font>
       </Label>
       <ListView fx:id="saleListView" prefHeight="200.0" prefWidth="200.0">
-         <cellFactory>
-            
-         </cellFactory>
+         
       </ListView>
         <HBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="btAllSale" onAction="#showAllSales" text="Все" />
-            <Button fx:id="btActiveSale" onAction="#showActiveSales" text="Активные" />
-            <Button fx:id="btPastSale" onAction="#showPastSales" text="Прошедшие" />
-            <Button fx:id="btFutureSale" onAction="#showFutureSales" text="Будущие" />
+            <Button fx:id="btAllSale" text="Все" />
+            <Button fx:id="btActiveSale" text="Активные" />
+            <Button fx:id="btPastSale" text="Прошедшие" />
+            <Button fx:id="btFutureSale" text="Будущие" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />
